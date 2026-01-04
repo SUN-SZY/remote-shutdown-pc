@@ -67,17 +67,47 @@ jobs:
     - name: Publish Executable
       run: dotnet publish Karpach.RemoteShutdown.Controller/Karpach.RemoteShutdown.Controller.csproj --configuration Release --output ./publish -p:Version=${{ steps.version.outputs.version }}
     
-    - name: Create Executable Archive
+    - name: Create Portable Archive
       shell: pwsh
       run: |
         $publishDir = "publish"
-        $archiveName = "remote-shutdown-pc.zip"
+        $archiveName = "remote-shutdown-pc-portable-${{ steps.version.outputs.version }}.zip"
         
         # Create archive with published files in root (not in a subdirectory)
         Push-Location $publishDir
-        7z a "..\$archiveName" *
+        Compress-Archive -Path * -DestinationPath "..\$archiveName"
         Pop-Location
-        Write-Host "Created executable archive: $archiveName"
+        Write-Host "Created portable archive: $archiveName"
+    
+    - name: Install Inno Setup
+      shell: pwsh
+      run: |
+        choco install innosetup -y
+        Write-Host "Inno Setup installed"
+    
+    - name: Create Installer
+      shell: pwsh
+      run: |
+        $version = "${{ steps.version.outputs.version }}"
+        $isccPath = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+        
+        # Create installer directory if it doesn't exist
+        if (-not (Test-Path "installer")) {
+          New-Item -ItemType Directory -Path "installer" | Out-Null
+        }
+        
+        # Build installer using Inno Setup
+        & $isccPath "/DMyAppVersion=$version" "RemoteShutdownSetup.iss"
+        
+        if ($LASTEXITCODE -eq 0) {
+          Write-Host "Installer created successfully"
+          
+          # List files in installer directory
+          Get-ChildItem "installer" | ForEach-Object { Write-Host $_.Name }
+        } else {
+          Write-Error "Installer creation failed with exit code $LASTEXITCODE"
+          exit 1
+        }
     
     - name: Create Git Tag
       run: |
@@ -85,6 +115,43 @@ jobs:
         git config user.email "actions@github.com"
         git tag -a ${{ steps.version.outputs.version_tag }} -m "Release version ${{ steps.version.outputs.version }}"
         git push origin ${{ steps.version.outputs.version_tag }}
+    
+    - name: Verify Release Assets
+      shell: pwsh
+      run: |
+        Write-Host "=== Verifying Release Assets ==="
+        Write-Host "Current directory: $(Get-Location)"
+        Write-Host "`nAll files in current directory:"
+        Get-ChildItem -File | ForEach-Object { Write-Host "  $($_.Name) ($($_.Length) bytes)" }
+        
+        Write-Host "`nAll files in installer directory:"
+        if (Test-Path "installer") {
+          Get-ChildItem "installer" -File | ForEach-Object { Write-Host "  $($_.Name) ($($_.Length) bytes)" }
+        } else {
+          Write-Warning "Installer directory not found!"
+        }
+        
+        $portableZip = "remote-shutdown-pc-portable-${{ steps.version.outputs.version }}.zip"
+        $installerExe = "installer/remote-shutdown-pc-setup-${{ steps.version.outputs.version }}.exe"
+        
+        Write-Host "`nChecking for required assets:"
+        if (Test-Path $portableZip) {
+          $size = (Get-Item $portableZip).Length
+          Write-Host "? Portable archive found: $portableZip ($size bytes)"
+        } else {
+          Write-Error "? Portable archive NOT found: $portableZip"
+          exit 1
+        }
+        
+        if (Test-Path $installerExe) {
+          $size = (Get-Item $installerExe).Length
+          Write-Host "? Installer found: $installerExe ($size bytes)"
+        } else {
+          Write-Error "? Installer NOT found: $installerExe"
+          exit 1
+        }
+        
+        Write-Host "`n=== All required assets verified ==="
     
     - name: Create Release
       uses: softprops/action-gh-release@v1
@@ -94,7 +161,7 @@ jobs:
         draft: false
         prerelease: false
         files: |
-          SourceCode-${{ steps.version.outputs.version }}.zip
-          remote-shutdown-pc-${{ steps.version.outputs.version }}.zip
+          remote-shutdown-pc-portable-${{ steps.version.outputs.version }}.zip
+          installer/remote-shutdown-pc-setup-${{ steps.version.outputs.version }}.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
