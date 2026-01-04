@@ -70,33 +70,25 @@ jobs:
     - name: Create Source Archive
       shell: pwsh
       run: |
-        # Create source code archive (exclude .git, bin, obj, .vs, etc.)
-        $excludePatterns = @('.git', '.github', 'bin', 'obj', '.vs', '.vscode', '*.user', 'packages', '.nuget')
-        
         $sourceDir = "."
         $archiveName = "SourceCode-${{ steps.version.outputs.version }}.zip"
+        $excludes = @(".git", ".github", "bin", "obj", ".vs", ".vscode", "packages", ".nuget")
         
-        # Create temporary file list
-        $tempFileList = New-TemporaryFile
-        Get-ChildItem -Path $sourceDir -Recurse -File |
-          Where-Object {
-            $file = $_
-            $excluded = $false
-            foreach ($pattern in $excludePatterns) {
-              if ($file.FullName -like "*$pattern*") {
-                $excluded = $true
-                break
-              }
-            }
-            -not $excluded
-          } |
-          ForEach-Object { $_.FullName -replace [regex]::Escape("$sourceDir\"), "" } |
-          Out-File -FilePath $tempFileList -Encoding UTF8
+        # Build exclusion arguments
+        $excludeArgs = @()
+        foreach ($exclude in $excludes) {
+          $excludeArgs += "-xr!$exclude"
+        }
+        $excludeArgs += "-xr!*.user"
         
-        # Create archive
-        7z a -w $sourceDir $archiveName @$tempFileList
+        # Create archive with directory structure preserved
+        7z a -r $archiveName $sourceDir @excludeArgs
         
-        Remove-Item $tempFileList
+        if ($LASTEXITCODE -ne 0) {
+          Write-Host "7z exit code: $LASTEXITCODE"
+          exit $LASTEXITCODE
+        }
+        
         Write-Host "Created source archive: $archiveName"
     
     - name: Create Executable Archive
