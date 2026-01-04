@@ -38,6 +38,11 @@
 			this.txtSecretCode = new System.Windows.Forms.TextBox();
 			this.lbPort = new System.Windows.Forms.Label();
 			this.txtPort = new System.Windows.Forms.TextBox();
+			this.chkHideTrayIcon = new System.Windows.Forms.CheckBox();
+			this.lbAdminPassword = new System.Windows.Forms.Label();
+			this.txtAdminPassword = new System.Windows.Forms.TextBox();
+			this.lblHotkeyInfo = new System.Windows.Forms.Label();
+			this.grpParentalControl = new System.Windows.Forms.GroupBox();
 			this.SuspendLayout();
 			// 
 			// chkAutoLoad
@@ -74,22 +79,22 @@
 			// btnOk
 			// 
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnOk.Location = new System.Drawing.Point(97, 168);
+			this.btnOk.Location = new System.Drawing.Point(97, 310);
 			this.btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.btnOk.Name = "btnOk";
 			this.btnOk.Size = new System.Drawing.Size(88, 27);
-			this.btnOk.TabIndex = 4;
+			this.btnOk.TabIndex = 10;
 			this.btnOk.Text = "Ok";
 			this.btnOk.UseVisualStyleBackColor = true;
 			// 
 			// btnCancel
 			// 
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(194, 168);
+			this.btnCancel.Location = new System.Drawing.Point(194, 310);
 			this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(88, 27);
-			this.btnCancel.TabIndex = 4;
+			this.btnCancel.TabIndex = 11;
 			this.btnCancel.Text = "Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
 			// 
@@ -127,23 +132,79 @@
 			this.txtPort.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.txtPort.Name = "txtPort";
 			this.txtPort.Size = new System.Drawing.Size(140, 23);
-			this.txtPort.TabIndex = 5;
+			this.txtPort.TabIndex = 6;
 			this.txtPort.Validating += new System.ComponentModel.CancelEventHandler(this.txtPort_Validating);
+			// 
+			// grpParentalControl
+			// 
+			this.grpParentalControl.Location = new System.Drawing.Point(14, 155);
+			this.grpParentalControl.Name = "grpParentalControl";
+			this.grpParentalControl.Size = new System.Drawing.Size(386, 140);
+			this.grpParentalControl.TabIndex = 12;
+			this.grpParentalControl.TabStop = false;
+			this.grpParentalControl.Text = "Parental Control";
+			// 
+			// chkHideTrayIcon
+			// 
+			this.chkHideTrayIcon.AutoSize = true;
+			this.chkHideTrayIcon.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.chkHideTrayIcon.Location = new System.Drawing.Point(85, 180);
+			this.chkHideTrayIcon.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.chkHideTrayIcon.Name = "chkHideTrayIcon";
+			this.chkHideTrayIcon.Size = new System.Drawing.Size(104, 19);
+			this.chkHideTrayIcon.TabIndex = 7;
+			this.chkHideTrayIcon.Text = "Hide Tray Icon:";
+			this.chkHideTrayIcon.UseVisualStyleBackColor = true;
+			// 
+			// lbAdminPassword
+			// 
+			this.lbAdminPassword.AutoSize = true;
+			this.lbAdminPassword.Location = new System.Drawing.Point(73, 212);
+			this.lbAdminPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.lbAdminPassword.Name = "lbAdminPassword";
+			this.lbAdminPassword.Size = new System.Drawing.Size(116, 15);
+			this.lbAdminPassword.TabIndex = 2;
+			this.lbAdminPassword.Text = "Admin Password:";
+			// 
+			// txtAdminPassword
+			// 
+			this.txtAdminPassword.Location = new System.Drawing.Point(194, 209);
+			this.txtAdminPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.txtAdminPassword.Name = "txtAdminPassword";
+			this.txtAdminPassword.PasswordChar = '*';
+			this.txtAdminPassword.Size = new System.Drawing.Size(140, 23);
+			this.txtAdminPassword.TabIndex = 8;
+			// 
+			// lblHotkeyInfo
+			// 
+			this.lblHotkeyInfo.AutoSize = true;
+			this.lblHotkeyInfo.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.lblHotkeyInfo.Location = new System.Drawing.Point(28, 245);
+			this.lblHotkeyInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.lblHotkeyInfo.Name = "lblHotkeyInfo";
+			this.lblHotkeyInfo.Size = new System.Drawing.Size(356, 30);
+			this.lblHotkeyInfo.TabIndex = 13;
+			this.lblHotkeyInfo.Text = "When tray icon is hidden, press Ctrl+Shift+Alt+R to reveal it.\nPassword is required to access settings, exit, or reveal tray icon.";
 			// 
 			// SettingsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(414, 212);
+			this.ClientSize = new System.Drawing.Size(414, 352);
+			this.Controls.Add(this.lblHotkeyInfo);
+			this.Controls.Add(this.txtAdminPassword);
+			this.Controls.Add(this.chkHideTrayIcon);
 			this.Controls.Add(this.txtPort);
 			this.Controls.Add(this.txtSecretCode);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnOk);
 			this.Controls.Add(this.cbxTrayCommand);
 			this.Controls.Add(this.lbPort);
+			this.Controls.Add(this.lbAdminPassword);
 			this.Controls.Add(this.lbSecretCode);
 			this.Controls.Add(this.lbDefaultCommand);
 			this.Controls.Add(this.chkAutoLoad);
+			this.Controls.Add(this.grpParentalControl);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -166,5 +227,10 @@
         private System.Windows.Forms.TextBox txtSecretCode;
         private System.Windows.Forms.Label lbPort;
         private System.Windows.Forms.TextBox txtPort;
+        private System.Windows.Forms.CheckBox chkHideTrayIcon;
+        private System.Windows.Forms.Label lbAdminPassword;
+        private System.Windows.Forms.TextBox txtAdminPassword;
+        private System.Windows.Forms.Label lblHotkeyInfo;
+        private System.Windows.Forms.GroupBox grpParentalControl;
     }
 }

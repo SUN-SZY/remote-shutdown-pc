@@ -20,6 +20,9 @@ namespace Karpach.RemoteShutdown.Controller
         private readonly IHostHelper _hostHelper;
         private readonly NotifyIcon _trayIcon;        
         private readonly ToolStripMenuItem _commandButton;
+        private readonly GlobalHotkeyHelper _hotkeyHelper;
+        private System.Windows.Forms.Timer _autoHideTimer;
+        private const int AutoHideDelayMs = 60000; // 60 seconds
 
         public ControllerApplicationContext(ITrayCommandHelper trayCommandHelper, SettingsForm settingsForm, IHostHelper hostHelper)
         {
@@ -59,16 +62,84 @@ namespace Karpach.RemoteShutdown.Controller
             {
                 Icon = Resources.AppIcon,
                 ContextMenuStrip = notifyContextMenu,
-                Visible = true
+                Visible = !Settings.Default.HideTrayIcon
             };
+
+            // Initialize global hotkey for revealing tray icon (Ctrl+Shift+Alt+R)
+            _hotkeyHelper = new GlobalHotkeyHelper();
+            _hotkeyHelper.HotkeyPressed += OnRevealHotkeyPressed;
+            _hotkeyHelper.Register();
+
+            // Initialize auto-hide timer
+            _autoHideTimer = new System.Windows.Forms.Timer();
+            _autoHideTimer.Interval = AutoHideDelayMs;
+            _autoHideTimer.Tick += OnAutoHideTimerTick;
 
             _hostHelper.SecretCode = Settings.Default.SecretCode;
             _hostHelper.DefaultCommand = (TrayCommandType)Settings.Default.DefaultCommand;
             _hostHelper.CreateHostAsync(Settings.Default.RemotePort);
         }
 
+        private void OnRevealHotkeyPressed(object sender, EventArgs e)
+        {
+            // Only respond if tray icon is hidden
+            if (!_trayIcon.Visible)
+            {
+                RevealTrayIcon();
+            }
+        }
+
+        private void RevealTrayIcon()
+        {
+            // Require password if set
+            if (!PasswordDialog.ValidatePassword())
+            {
+                return;
+            }
+
+            // Show the tray icon
+            _trayIcon.Visible = true;
+
+            // Start auto-hide timer if HideTrayIcon setting is enabled
+            if (Settings.Default.HideTrayIcon)
+            {
+                _autoHideTimer.Stop();
+                _autoHideTimer.Start();
+            }
+        }
+
+        private void OnAutoHideTimerTick(object sender, EventArgs e)
+        {
+            _autoHideTimer.Stop();
+            
+            // Only auto-hide if the setting is still enabled
+            if (Settings.Default.HideTrayIcon)
+            {
+                _trayIcon.Visible = false;
+            }
+        }
+
+        private void ResetAutoHideTimer()
+        {
+            if (Settings.Default.HideTrayIcon && _trayIcon.Visible)
+            {
+                _autoHideTimer.Stop();
+                _autoHideTimer.Start();
+            }
+        }
+
         private void SettingsClick(object sender, EventArgs e)
-        {            
+        {
+            // Stop auto-hide timer while settings dialog is open
+            _autoHideTimer.Stop();
+
+            // Require password if set
+            if (!PasswordDialog.ValidatePassword())
+            {
+                ResetAutoHideTimer();
+                return;
+            }
+
             if (_settingsForm.ShowDialog() == DialogResult.OK)
             {
                 if (Settings.Default.RemotePort != _settingsForm.Port)
@@ -83,11 +154,24 @@ namespace Karpach.RemoteShutdown.Controller
                 Settings.Default.AutoStart = _settingsForm.AutoStart;
                 Settings.Default.DefaultCommand = (int)_settingsForm.CommandType;
                 Settings.Default.RemotePort = _settingsForm.Port;
-                Settings.Default.SecretCode = _settingsForm.SecretCode;                
+                Settings.Default.SecretCode = _settingsForm.SecretCode;
+                Settings.Default.HideTrayIcon = _settingsForm.HideTrayIcon;
+                Settings.Default.AdminPassword = _settingsForm.AdminPassword;
                 Settings.Default.Save();
                 // Update host helper
                 _hostHelper.SecretCode = Settings.Default.SecretCode;
                 _hostHelper.DefaultCommand = (TrayCommandType)Settings.Default.DefaultCommand;
+
+                // Apply hide tray icon setting
+                if (Settings.Default.HideTrayIcon)
+                {
+                    _trayIcon.Visible = false;
+                }
+            }
+            else
+            {
+                // User cancelled, restart auto-hide timer if needed
+                ResetAutoHideTimer();
             }
         }
 
@@ -107,11 +191,24 @@ namespace Karpach.RemoteShutdown.Controller
 
         private void ShutDownClick(object sender, EventArgs e)
         {
+            ResetAutoHideTimer();
             _trayCommandHelper.RunCommand((TrayCommandType)Settings.Default.DefaultCommand);
         }
 
         void Exit(object sender, EventArgs e)
         {
+            // Require password if set
+            if (!PasswordDialog.ValidatePassword())
+            {
+                ResetAutoHideTimer();
+                return;
+            }
+
+            // Cleanup
+            _autoHideTimer?.Stop();
+            _autoHideTimer?.Dispose();
+            _hotkeyHelper?.Dispose();
+            
             // Hide tray icon, otherwise it will remain shown until user mouses over it
             _trayIcon.Visible = false;            
             _hostHelper.Cancel();

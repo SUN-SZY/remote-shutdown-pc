@@ -12,13 +12,17 @@ namespace Karpach.RemoteShutdown.Controller
         public bool AutoStart => chkAutoLoad.Checked;
         public int Port => int.Parse(txtPort.Text);
         public string SecretCode => txtSecretCode.Text;
+        public bool HideTrayIcon => chkHideTrayIcon.Checked;
+        public string AdminPassword => txtAdminPassword.Text;
 
         public SettingsForm(ITrayCommandHelper trayCommandHelper)
         {
             InitializeComponent();
             txtSecretCode.Text = Settings.Default.SecretCode;
             txtPort.Text = Settings.Default.RemotePort.ToString();
-            chkAutoLoad.Checked = Settings.Default.AutoStart;            
+            chkAutoLoad.Checked = Settings.Default.AutoStart;
+            chkHideTrayIcon.Checked = Settings.Default.HideTrayIcon;
+            txtAdminPassword.Text = Settings.Default.AdminPassword;
             cbxTrayCommand.DisplayMember = "Name";
             cbxTrayCommand.ValueMember = "CommandType";            
             cbxTrayCommand.DataSource = trayCommandHelper.Commands;
