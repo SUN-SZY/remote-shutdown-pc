@@ -55,8 +55,8 @@ jobs:
         
         $versionTag = "v$newVersion"
         Write-Host "New version: $newVersion"
-        Write-Host "version=$newVersion" >> $env:GITHUB_OUTPUT
-        Write-Host "version_tag=$versionTag" >> $env:GITHUB_OUTPUT
+        Add-Content -Path $env:GITHUB_OUTPUT -Value "version=$newVersion"
+        Add-Content -Path $env:GITHUB_OUTPUT -Value "version_tag=$versionTag"
     
     - name: Restore dependencies
       run: dotnet restore

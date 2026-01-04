@@ -21,7 +21,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Libuv" Version="1.10.0" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Autofac" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.3.0" />
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="10.0.1" />
