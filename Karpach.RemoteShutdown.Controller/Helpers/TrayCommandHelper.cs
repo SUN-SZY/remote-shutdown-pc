@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Karpach.RemoteShutdown.Controller.Interfaces;
+using Karpach.RemoteShutdown.Controller.Properties;
 
 namespace Karpach.RemoteShutdown.Controller.Helpers
 {
@@ -48,7 +49,7 @@ namespace Karpach.RemoteShutdown.Controller.Helpers
             switch (commandType)
             {
                 case TrayCommandType.Hibernate:
-                    Application.SetSuspendState(PowerState.Hibernate, true, true);
+                    Application.SetSuspendState(PowerState.Hibernate, true, Settings.Default.DisableWakeEvent);
                     break;
 				case TrayCommandType.Restart:
                     Process.Start("shutdown", "/r /t 0");
@@ -57,7 +58,7 @@ namespace Karpach.RemoteShutdown.Controller.Helpers
                     Process.Start("shutdown", "/s /t 0");
                     break;
                 case TrayCommandType.Suspend:
-                    Application.SetSuspendState(PowerState.Suspend, true, true);
+                    Application.SetSuspendState(PowerState.Suspend, true, Settings.Default.DisableWakeEvent);
                     break;
                 case TrayCommandType.TurnScreenOff:
                     SendMessage(

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 using Karpach.RemoteShutdown.Controller.Interfaces;
@@ -14,6 +14,7 @@ namespace Karpach.RemoteShutdown.Controller
         public string SecretCode => txtSecretCode.Text;
         public bool HideTrayIcon => chkHideTrayIcon.Checked;
         public string AdminPassword => txtAdminPassword.Text;
+        public bool DisableWakeEvent => chkDisableWakeEvent.Checked;
 
         public SettingsForm(ITrayCommandHelper trayCommandHelper)
         {
@@ -23,6 +24,7 @@ namespace Karpach.RemoteShutdown.Controller
             chkAutoLoad.Checked = Settings.Default.AutoStart;
             chkHideTrayIcon.Checked = Settings.Default.HideTrayIcon;
             txtAdminPassword.Text = Settings.Default.AdminPassword;
+            chkDisableWakeEvent.Checked = Settings.Default.DisableWakeEvent;
             cbxTrayCommand.DisplayMember = "Name";
             cbxTrayCommand.ValueMember = "CommandType";            
             cbxTrayCommand.DataSource = trayCommandHelper.Commands;

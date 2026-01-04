@@ -94,5 +94,17 @@ namespace Karpach.RemoteShutdown.Controller.Properties {
                 this["AdminPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisableWakeEvent {
+            get {
+                return ((bool)(this["DisableWakeEvent"]));
+            }
+            set {
+                this["DisableWakeEvent"] = value;
+            }
+        }
     }
 }

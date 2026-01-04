@@ -20,205 +20,222 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-			this.chkAutoLoad = new System.Windows.Forms.CheckBox();
-			this.lbDefaultCommand = new System.Windows.Forms.Label();
-			this.cbxTrayCommand = new System.Windows.Forms.ComboBox();
-			this.btnOk = new System.Windows.Forms.Button();
-			this.btnCancel = new System.Windows.Forms.Button();
-			this.lbSecretCode = new System.Windows.Forms.Label();
-			this.txtSecretCode = new System.Windows.Forms.TextBox();
-			this.lbPort = new System.Windows.Forms.Label();
-			this.txtPort = new System.Windows.Forms.TextBox();
-			this.chkHideTrayIcon = new System.Windows.Forms.CheckBox();
-			this.lbAdminPassword = new System.Windows.Forms.Label();
-			this.txtAdminPassword = new System.Windows.Forms.TextBox();
-			this.lblHotkeyInfo = new System.Windows.Forms.Label();
-			this.grpParentalControl = new System.Windows.Forms.GroupBox();
-			this.SuspendLayout();
+			chkAutoLoad = new System.Windows.Forms.CheckBox();
+			lbDefaultCommand = new System.Windows.Forms.Label();
+			cbxTrayCommand = new System.Windows.Forms.ComboBox();
+			btnOk = new System.Windows.Forms.Button();
+			btnCancel = new System.Windows.Forms.Button();
+			lbSecretCode = new System.Windows.Forms.Label();
+			txtSecretCode = new System.Windows.Forms.TextBox();
+			lbPort = new System.Windows.Forms.Label();
+			txtPort = new System.Windows.Forms.TextBox();
+			chkHideTrayIcon = new System.Windows.Forms.CheckBox();
+			lbAdminPassword = new System.Windows.Forms.Label();
+			txtAdminPassword = new System.Windows.Forms.TextBox();
+			lblHotkeyInfo = new System.Windows.Forms.Label();
+			grpParentalControl = new System.Windows.Forms.GroupBox();
+			chkDisableWakeEvent = new System.Windows.Forms.CheckBox();
+			grpParentalControl.SuspendLayout();
+			SuspendLayout();
 			// 
 			// chkAutoLoad
 			// 
-			this.chkAutoLoad.AutoSize = true;
-			this.chkAutoLoad.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.chkAutoLoad.Location = new System.Drawing.Point(21, 14);
-			this.chkAutoLoad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.chkAutoLoad.Name = "chkAutoLoad";
-			this.chkAutoLoad.Size = new System.Drawing.Size(186, 19);
-			this.chkAutoLoad.TabIndex = 1;
-			this.chkAutoLoad.Text = "Auto load at Windows startup:";
-			this.chkAutoLoad.UseVisualStyleBackColor = true;
+			chkAutoLoad.AutoSize = true;
+			chkAutoLoad.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			chkAutoLoad.Location = new System.Drawing.Point(21, 14);
+			chkAutoLoad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			chkAutoLoad.Name = "chkAutoLoad";
+			chkAutoLoad.Size = new System.Drawing.Size(186, 19);
+			chkAutoLoad.TabIndex = 1;
+			chkAutoLoad.Text = "Auto load at Windows startup:";
+			chkAutoLoad.UseVisualStyleBackColor = true;
 			// 
 			// lbDefaultCommand
 			// 
-			this.lbDefaultCommand.AutoSize = true;
-			this.lbDefaultCommand.Location = new System.Drawing.Point(50, 46);
-			this.lbDefaultCommand.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.lbDefaultCommand.Name = "lbDefaultCommand";
-			this.lbDefaultCommand.Size = new System.Drawing.Size(132, 15);
-			this.lbDefaultCommand.TabIndex = 2;
-			this.lbDefaultCommand.Text = "System Tray Command:";
+			lbDefaultCommand.AutoSize = true;
+			lbDefaultCommand.Location = new System.Drawing.Point(54, 46);
+			lbDefaultCommand.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			lbDefaultCommand.Name = "lbDefaultCommand";
+			lbDefaultCommand.Size = new System.Drawing.Size(132, 15);
+			lbDefaultCommand.TabIndex = 2;
+			lbDefaultCommand.Text = "System Tray Command:";
 			// 
 			// cbxTrayCommand
 			// 
-			this.cbxTrayCommand.FormattingEnabled = true;
-			this.cbxTrayCommand.Location = new System.Drawing.Point(194, 43);
-			this.cbxTrayCommand.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.cbxTrayCommand.Name = "cbxTrayCommand";
-			this.cbxTrayCommand.Size = new System.Drawing.Size(140, 23);
-			this.cbxTrayCommand.TabIndex = 3;
+			cbxTrayCommand.FormattingEnabled = true;
+			cbxTrayCommand.Location = new System.Drawing.Point(194, 43);
+			cbxTrayCommand.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			cbxTrayCommand.Name = "cbxTrayCommand";
+			cbxTrayCommand.Size = new System.Drawing.Size(140, 23);
+			cbxTrayCommand.TabIndex = 3;
 			// 
 			// btnOk
 			// 
-			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnOk.Location = new System.Drawing.Point(97, 310);
-			this.btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.btnOk.Name = "btnOk";
-			this.btnOk.Size = new System.Drawing.Size(88, 27);
-			this.btnOk.TabIndex = 10;
-			this.btnOk.Text = "Ok";
-			this.btnOk.UseVisualStyleBackColor = true;
+			btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+			btnOk.Location = new System.Drawing.Point(97, 340);
+			btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			btnOk.Name = "btnOk";
+			btnOk.Size = new System.Drawing.Size(88, 27);
+			btnOk.TabIndex = 11;
+			btnOk.Text = "Ok";
+			btnOk.UseVisualStyleBackColor = true;
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(194, 310);
-			this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.Size = new System.Drawing.Size(88, 27);
-			this.btnCancel.TabIndex = 11;
-			this.btnCancel.Text = "Cancel";
-			this.btnCancel.UseVisualStyleBackColor = true;
+			btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			btnCancel.Location = new System.Drawing.Point(194, 340);
+			btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			btnCancel.Name = "btnCancel";
+			btnCancel.Size = new System.Drawing.Size(88, 27);
+			btnCancel.TabIndex = 12;
+			btnCancel.Text = "Cancel";
+			btnCancel.UseVisualStyleBackColor = true;
 			// 
 			// lbSecretCode
 			// 
-			this.lbSecretCode.AutoSize = true;
-			this.lbSecretCode.Location = new System.Drawing.Point(107, 84);
-			this.lbSecretCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.lbSecretCode.Name = "lbSecretCode";
-			this.lbSecretCode.Size = new System.Drawing.Size(73, 15);
-			this.lbSecretCode.TabIndex = 2;
-			this.lbSecretCode.Text = "Secret Code:";
+			lbSecretCode.AutoSize = true;
+			lbSecretCode.Location = new System.Drawing.Point(112, 84);
+			lbSecretCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			lbSecretCode.Name = "lbSecretCode";
+			lbSecretCode.Size = new System.Drawing.Size(73, 15);
+			lbSecretCode.TabIndex = 2;
+			lbSecretCode.Text = "Secret Code:";
 			// 
 			// txtSecretCode
 			// 
-			this.txtSecretCode.Location = new System.Drawing.Point(194, 81);
-			this.txtSecretCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.txtSecretCode.Name = "txtSecretCode";
-			this.txtSecretCode.Size = new System.Drawing.Size(140, 23);
-			this.txtSecretCode.TabIndex = 5;
+			txtSecretCode.Location = new System.Drawing.Point(194, 81);
+			txtSecretCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			txtSecretCode.Name = "txtSecretCode";
+			txtSecretCode.Size = new System.Drawing.Size(140, 23);
+			txtSecretCode.TabIndex = 5;
 			// 
 			// lbPort
 			// 
-			this.lbPort.AutoSize = true;
-			this.lbPort.Location = new System.Drawing.Point(154, 121);
-			this.lbPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.lbPort.Name = "lbPort";
-			this.lbPort.Size = new System.Drawing.Size(32, 15);
-			this.lbPort.TabIndex = 2;
-			this.lbPort.Text = "Port:";
+			lbPort.AutoSize = true;
+			lbPort.Location = new System.Drawing.Point(153, 121);
+			lbPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			lbPort.Name = "lbPort";
+			lbPort.Size = new System.Drawing.Size(32, 15);
+			lbPort.TabIndex = 2;
+			lbPort.Text = "Port:";
 			// 
 			// txtPort
 			// 
-			this.txtPort.Location = new System.Drawing.Point(194, 118);
-			this.txtPort.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.txtPort.Name = "txtPort";
-			this.txtPort.Size = new System.Drawing.Size(140, 23);
-			this.txtPort.TabIndex = 6;
-			this.txtPort.Validating += new System.ComponentModel.CancelEventHandler(this.txtPort_Validating);
-			// 
-			// grpParentalControl
-			// 
-			this.grpParentalControl.Location = new System.Drawing.Point(14, 155);
-			this.grpParentalControl.Name = "grpParentalControl";
-			this.grpParentalControl.Size = new System.Drawing.Size(386, 140);
-			this.grpParentalControl.TabIndex = 12;
-			this.grpParentalControl.TabStop = false;
-			this.grpParentalControl.Text = "Parental Control";
+			txtPort.Location = new System.Drawing.Point(194, 118);
+			txtPort.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			txtPort.Name = "txtPort";
+			txtPort.Size = new System.Drawing.Size(140, 23);
+			txtPort.TabIndex = 6;
+			txtPort.Validating += txtPort_Validating;
 			// 
 			// chkHideTrayIcon
 			// 
-			this.chkHideTrayIcon.AutoSize = true;
-			this.chkHideTrayIcon.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.chkHideTrayIcon.Location = new System.Drawing.Point(85, 180);
-			this.chkHideTrayIcon.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.chkHideTrayIcon.Name = "chkHideTrayIcon";
-			this.chkHideTrayIcon.Size = new System.Drawing.Size(104, 19);
-			this.chkHideTrayIcon.TabIndex = 7;
-			this.chkHideTrayIcon.Text = "Hide Tray Icon:";
-			this.chkHideTrayIcon.UseVisualStyleBackColor = true;
+			chkHideTrayIcon.AutoSize = true;
+			chkHideTrayIcon.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			chkHideTrayIcon.Location = new System.Drawing.Point(89, 22);
+			chkHideTrayIcon.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			chkHideTrayIcon.Name = "chkHideTrayIcon";
+			chkHideTrayIcon.Size = new System.Drawing.Size(104, 19);
+			chkHideTrayIcon.TabIndex = 8;
+			chkHideTrayIcon.Text = "Hide Tray Icon:";
+			chkHideTrayIcon.UseVisualStyleBackColor = true;
 			// 
 			// lbAdminPassword
 			// 
-			this.lbAdminPassword.AutoSize = true;
-			this.lbAdminPassword.Location = new System.Drawing.Point(73, 212);
-			this.lbAdminPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.lbAdminPassword.Name = "lbAdminPassword";
-			this.lbAdminPassword.Size = new System.Drawing.Size(116, 15);
-			this.lbAdminPassword.TabIndex = 2;
-			this.lbAdminPassword.Text = "Admin Password:";
+			lbAdminPassword.AutoSize = true;
+			lbAdminPassword.Location = new System.Drawing.Point(73, 57);
+			lbAdminPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			lbAdminPassword.Name = "lbAdminPassword";
+			lbAdminPassword.Size = new System.Drawing.Size(99, 15);
+			lbAdminPassword.TabIndex = 2;
+			lbAdminPassword.Text = "Admin Password:";
 			// 
 			// txtAdminPassword
 			// 
-			this.txtAdminPassword.Location = new System.Drawing.Point(194, 209);
-			this.txtAdminPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.txtAdminPassword.Name = "txtAdminPassword";
-			this.txtAdminPassword.PasswordChar = '*';
-			this.txtAdminPassword.Size = new System.Drawing.Size(140, 23);
-			this.txtAdminPassword.TabIndex = 8;
+			txtAdminPassword.Location = new System.Drawing.Point(194, 239);
+			txtAdminPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			txtAdminPassword.Name = "txtAdminPassword";
+			txtAdminPassword.PasswordChar = '*';
+			txtAdminPassword.Size = new System.Drawing.Size(140, 23);
+			txtAdminPassword.TabIndex = 9;
 			// 
 			// lblHotkeyInfo
 			// 
-			this.lblHotkeyInfo.AutoSize = true;
-			this.lblHotkeyInfo.ForeColor = System.Drawing.SystemColors.GrayText;
-			this.lblHotkeyInfo.Location = new System.Drawing.Point(28, 245);
-			this.lblHotkeyInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.lblHotkeyInfo.Name = "lblHotkeyInfo";
-			this.lblHotkeyInfo.Size = new System.Drawing.Size(356, 30);
-			this.lblHotkeyInfo.TabIndex = 13;
-			this.lblHotkeyInfo.Text = "When tray icon is hidden, press Ctrl+Shift+Alt+R to reveal it.\nPassword is required to access settings, exit, or reveal tray icon.";
+			lblHotkeyInfo.AutoSize = true;
+			lblHotkeyInfo.ForeColor = System.Drawing.SystemColors.GrayText;
+			lblHotkeyInfo.Location = new System.Drawing.Point(28, 275);
+			lblHotkeyInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			lblHotkeyInfo.Name = "lblHotkeyInfo";
+			lblHotkeyInfo.Size = new System.Drawing.Size(338, 30);
+			lblHotkeyInfo.TabIndex = 14;
+			lblHotkeyInfo.Text = "When tray icon is hidden, press Ctrl+Shift+Alt+R to reveal it.\nPassword is required to access settings, exit, or reveal tray icon.";
+			// 
+			// grpParentalControl
+			// 
+			grpParentalControl.Controls.Add(chkHideTrayIcon);
+			grpParentalControl.Controls.Add(lbAdminPassword);
+			grpParentalControl.Location = new System.Drawing.Point(14, 185);
+			grpParentalControl.Name = "grpParentalControl";
+			grpParentalControl.Size = new System.Drawing.Size(386, 140);
+			grpParentalControl.TabIndex = 13;
+			grpParentalControl.TabStop = false;
+			grpParentalControl.Text = "Parental Control";
+			// 
+			// chkDisableWakeEvent
+			// 
+			chkDisableWakeEvent.AutoSize = true;
+			chkDisableWakeEvent.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			chkDisableWakeEvent.Location = new System.Drawing.Point(73, 160);
+			chkDisableWakeEvent.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			chkDisableWakeEvent.Name = "chkDisableWakeEvent";
+			chkDisableWakeEvent.Size = new System.Drawing.Size(134, 19);
+			chkDisableWakeEvent.TabIndex = 7;
+			chkDisableWakeEvent.Text = "Disable wake events:";
+			chkDisableWakeEvent.UseVisualStyleBackColor = true;
 			// 
 			// SettingsForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(414, 352);
-			this.Controls.Add(this.lblHotkeyInfo);
-			this.Controls.Add(this.txtAdminPassword);
-			this.Controls.Add(this.chkHideTrayIcon);
-			this.Controls.Add(this.txtPort);
-			this.Controls.Add(this.txtSecretCode);
-			this.Controls.Add(this.btnCancel);
-			this.Controls.Add(this.btnOk);
-			this.Controls.Add(this.cbxTrayCommand);
-			this.Controls.Add(this.lbPort);
-			this.Controls.Add(this.lbAdminPassword);
-			this.Controls.Add(this.lbSecretCode);
-			this.Controls.Add(this.lbDefaultCommand);
-			this.Controls.Add(this.chkAutoLoad);
-			this.Controls.Add(this.grpParentalControl);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.MaximizeBox = false;
-			this.Name = "SettingsForm";
-			this.Text = "Settings";
-			this.ResumeLayout(false);
-			this.PerformLayout();
+			AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+			AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			ClientSize = new System.Drawing.Size(414, 382);
+			Controls.Add(lblHotkeyInfo);
+			Controls.Add(txtAdminPassword);
+			Controls.Add(chkDisableWakeEvent);
+			Controls.Add(txtPort);
+			Controls.Add(txtSecretCode);
+			Controls.Add(btnCancel);
+			Controls.Add(btnOk);
+			Controls.Add(cbxTrayCommand);
+			Controls.Add(lbPort);
+			Controls.Add(lbSecretCode);
+			Controls.Add(lbDefaultCommand);
+			Controls.Add(chkAutoLoad);
+			Controls.Add(grpParentalControl);
+			FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+			Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			MaximizeBox = false;
+			Name = "SettingsForm";
+			Text = "Settings";
+			grpParentalControl.ResumeLayout(false);
+			grpParentalControl.PerformLayout();
+			ResumeLayout(false);
+			PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.CheckBox chkAutoLoad;
+		private System.Windows.Forms.CheckBox chkAutoLoad;
         private System.Windows.Forms.Label lbDefaultCommand;
         private System.Windows.Forms.ComboBox cbxTrayCommand;
         private System.Windows.Forms.Button btnOk;
@@ -232,5 +249,6 @@
         private System.Windows.Forms.TextBox txtAdminPassword;
         private System.Windows.Forms.Label lblHotkeyInfo;
         private System.Windows.Forms.GroupBox grpParentalControl;
+        private System.Windows.Forms.CheckBox chkDisableWakeEvent;
     }
 }

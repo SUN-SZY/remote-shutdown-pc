@@ -157,7 +157,9 @@ namespace Karpach.RemoteShutdown.Controller
                 Settings.Default.SecretCode = _settingsForm.SecretCode;
                 Settings.Default.HideTrayIcon = _settingsForm.HideTrayIcon;
                 Settings.Default.AdminPassword = _settingsForm.AdminPassword;
+                Settings.Default.DisableWakeEvent = _settingsForm.DisableWakeEvent;
                 Settings.Default.Save();
+
                 // Update host helper
                 _hostHelper.SecretCode = Settings.Default.SecretCode;
                 _hostHelper.DefaultCommand = (TrayCommandType)Settings.Default.DefaultCommand;
