@@ -36,7 +36,7 @@ namespace Karpach.RemoteShutdown.Controller.Helpers
                 await _hostTask.ConfigureAwait(false);
                 _cancellationTokenSource = new CancellationTokenSource();
             }
-            _hostTask = Task.Run(() =>
+            _hostTask = Task.Run(async () =>
             {
                 var host = new WebHostBuilder()
                     .UseUrls($"http://+:{port}")
@@ -52,7 +52,7 @@ namespace Karpach.RemoteShutdown.Controller.Helpers
                         });
                     })
                     .Build();
-                host.StartAsync(_cancellationTokenSource.Token);                
+                await host.StartAsync(_cancellationTokenSource.Token);
             }, _cancellationTokenSource.Token);
         }
 
