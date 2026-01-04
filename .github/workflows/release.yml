@@ -67,38 +67,16 @@ jobs:
     - name: Publish Executable
       run: dotnet publish Karpach.RemoteShutdown.Controller/Karpach.RemoteShutdown.Controller.csproj --configuration Release --output ./publish -p:Version=${{ steps.version.outputs.version }}
     
-    - name: Create Source Archive
-      shell: pwsh
-      run: |
-        $sourceDir = "."
-        $archiveName = "SourceCode-${{ steps.version.outputs.version }}.zip"
-        $excludes = @(".git", ".github", "bin", "obj", ".vs", ".vscode", "packages", ".nuget")
-        
-        # Build exclusion arguments
-        $excludeArgs = @()
-        foreach ($exclude in $excludes) {
-          $excludeArgs += "-xr!$exclude"
-        }
-        $excludeArgs += "-xr!*.user"
-        
-        # Create archive with directory structure preserved
-        7z a -r $archiveName $sourceDir @excludeArgs
-        
-        if ($LASTEXITCODE -ne 0) {
-          Write-Host "7z exit code: $LASTEXITCODE"
-          exit $LASTEXITCODE
-        }
-        
-        Write-Host "Created source archive: $archiveName"
-    
     - name: Create Executable Archive
       shell: pwsh
       run: |
         $publishDir = "publish"
-        $archiveName = "remote-shutdown-pc-${{ steps.version.outputs.version }}.zip"
+        $archiveName = "remote-shutdown-pc.zip"
         
-        # Create archive with published files
-        7z a $archiveName "$publishDir\*"
+        # Create archive with published files in root (not in a subdirectory)
+        Push-Location $publishDir
+        7z a "..\$archiveName" *
+        Pop-Location
         Write-Host "Created executable archive: $archiveName"
     
     - name: Create Git Tag
