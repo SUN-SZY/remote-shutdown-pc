@@ -70,4 +70,10 @@ Simply add the parameter ?delay={seconds} to your get request
 
 The application can be easily used with IFTTT or AutoVoice to shutdown PC remotely.
 
+## Support my work
+
+If you like what I do, consider buying me a coffee ☕
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-yellow?logo=buy-me-a-coffee)](https://www.buymeacoffee.com/karpach)
+
 [![Build and Test](https://github.com/karpach/remote-shutdown-pc/actions/workflows/build.yml/badge.svg)](https://github.com/karpach/remote-shutdown-pc/actions)
